@@ -5,7 +5,9 @@
 int main(void){
     int flag, length, i;
     char *Password;
+    FILE *f;
 
+    f = fopen("passwords.txt", "a+");
 
     system("cls");
     while(1){
@@ -37,14 +39,16 @@ int main(void){
                 Password[i] = (char)x;
             }
 
-            fprintf( stdout, "Password generated is: ");
+            fprintf( f, "Password: ");
             for( i = 0; i < length; i++)
-                fprintf( stdout, "%c", Password[i]);
-            fprintf(stdout, "\n");
+                fprintf( f, "%c", Password[i]);
+            fprintf(f, "\n");
+            fprintf( stdout, "Password is generated! Open passwords.txt to view it!\n");
         }
     }
     fprintf(stdout, "\nThank you for using our Password Generator!\n");
-    
+    fprintf(f, "\n");
+    fclose(f);
     system("pause");
     return 0;
 }
